@@ -1,7 +1,7 @@
 <html>
 <body>
 <h2>Congratulations DevOps Champs !!</h2>
- <h2>My Fav Batch 2.0 - Pipeline as code Project   :) !!</h2>
+ <h2>My Fav Batch 2.0 - Pipeline as code Project 2   :) !!</h2>
 <form >
   <div class="container">
     <label for="uname"><b>Username</b></label>
