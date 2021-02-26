@@ -44,19 +44,14 @@ node ('master') {
             slackSend(color: 'good', channel: '#jenkins-build-channel', message: "Job Successfull, here is the info -  Job '${env.JOB_NAME}, Build# [${env.BUILD_NUMBER}]', Node: ${env.NODE_NAME} (${env.BUILD_URL})")
         }
     } 
-	catch (Exception e){
+    catch (Exception e) {
         sh 'docker ps -f name=deploy_mavenweb -q | xargs --no-run-if-empty docker container stop'
         //sh 'docker container ls -a -fname=deploy_mavenweb -q | xargs -r docker container rm'
         echo e.toString()
         currentBuild.result = "FAILURE"
         echo "Jenkins Pipeline Failed !! Check logs"
-        stage ('Slack notification')  {
-            slackSend(color: 'warning', channel: '#jenkins-build-channel', message: "Job Failed, here is the info -  Job '${env.JOB_NAME}, Build# [${env.BUILD_NUMBER}]', Node: ${env.NODE_NAME} (${env.BUILD_URL})")
-        }
+            stage ('Slack notification')  {
+                slackSend(color: 'warning', channel: '#jenkins-build-channel', message: "Job Failed, here is the info -  Job '${env.JOB_NAME}, Build# [${env.BUILD_NUMBER}]', Node: ${env.NODE_NAME} (${env.BUILD_URL})")
+            }
 	}
-	//finally {
-    //    stage ('Job Done')  {
-    //        echo "finally Stage is Optionalnal in try an catch"
-    //    }
-	//}
 }
