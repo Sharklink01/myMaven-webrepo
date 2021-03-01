@@ -33,6 +33,7 @@ node ('master') {
             image.push()
             }
         }
+	}
     try {
         stage('Docker Cleanup') {
             sh 'docker ps -f name=deploy_mavenweb -q | xargs --no-run-if-empty docker container stop'
@@ -62,5 +63,4 @@ node ('master') {
                 slackSend(color: 'warning', channel: '#jenkins-build-channel', message: "Job Failed, here is the info -  Job '${env.JOB_NAME}, Build# [${env.BUILD_NUMBER}]', Node: ${env.NODE_NAME} (${env.BUILD_URL})")
             }
 	}
-}
 }
