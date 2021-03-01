@@ -33,7 +33,6 @@ node ('master') {
             image.push()
             }
         }
-	}
     try {
         stage('Docker Cleanup') {
             sh 'docker ps -f name=deploy_mavenweb -q | xargs --no-run-if-empty docker container stop'
